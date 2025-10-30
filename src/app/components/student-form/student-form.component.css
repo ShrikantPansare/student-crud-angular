@@ -1,0 +1,18 @@
+/* Student Form Component Styles */
+.text-success {
+  color: #28a745;
+}
+
+.text-danger {
+  color: #dc3545;
+}
+
+.form-control:disabled {
+  background-color: #f8f9fa;
+  opacity: 1;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

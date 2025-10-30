@@ -1,0 +1,59 @@
+<div class="card">
+  <div class="row">
+    <div class="col">
+      <h2>List of Students</h2>
+    </div>
+    <div class="col text-right">
+      <button class="btn btn-primary" (click)="addStudent()">
+        + Add New Student
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="text-center">
+    <p>Loading students...</p>
+  </div>
+
+  <div *ngIf="!loading && students.length === 0" class="text-center">
+    <p>No students found. Click "Add New Student" to create one.</p>
+  </div>
+
+  <table *ngIf="!loading && students.length > 0" class="table">
+    <thead>
+      <tr>
+        <th>Actions</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Address</th>
+        <th>Birth Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students">
+        <td>
+          <div class="action-buttons">
+            <button (click)="viewStudent(student.id!)" title="View">
+              👁️
+            </button>
+            <button (click)="editStudent(student.id!)" title="Edit">
+              ✏️
+            </button>
+            <button (click)="deleteStudent(student.id!)" title="Delete">
+              🗑️
+            </button>
+          </div>
+        </td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.city }}</td>
+        <td>{{ student.address }}</td>
+        <td>{{ formatDate(student.birth_date) }}</td>
+        <td>
+          <span [class]="student.is_active ? 'text-success' : 'text-danger'">
+            {{ student.is_active ? 'Active' : 'Inactive' }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
